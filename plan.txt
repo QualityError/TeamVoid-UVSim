@@ -30,7 +30,7 @@
                 # memory[memory_location] = user_input // memory_location is the last two bits of the instruction that the user inputs.
                 #                                      // it is retrieved by VM and passed as an argument to the READ instruction.
 
-    # File: registers.cpp
+    # File: memory.cpp:
         # The file contains a data structure with 100 memory locations and the values in each memory location.
         # It also contains IR (Instruction Register), IC (Instruction Counter), A (Accumulator) registers and their values.
         # Some other files are interconnected with this file.
@@ -49,7 +49,7 @@
         # Task2: implement Load/Store operations.
         # Task3: implement Arithmetic operations.
         # Task4: implement Control operations.
-    # US2: in registers.cpp:
+    # US2: in memory.cpp:
         # Task1: implement a data structure for memory and create three other instructions (IR, IC, A).
     # US3: in vm.cpp:
         # Task1: create a loop that will retrieve each instruction and load into IR.
