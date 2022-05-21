@@ -61,6 +61,6 @@
     # US4: in main.cpp:
         # Task1: initialize the terminal window.
         	# display the directions on the terminal to the user.
-	    # Task2: a loop that prompts the user to input commands for execution.
+	# Task2: a loop that prompts the user to input commands for execution.
             # store the commands on RAM/file etc.
 	
