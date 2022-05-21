@@ -6,7 +6,6 @@
             # a loop that prompts the user to input commands for execution.
             # -- store the commands on RAM/file etc.
             # execution happens in vm.cpp.
-            # display the content at each location to the user (Feature 5).
             # dump the results in console (Feature 6).
             # terminate the program.
         # }
