@@ -57,11 +57,10 @@ UVSim Program (CS2450)
         # Task6: increment IC.
 ## US4: in main.cpp:
 
-# Task1: Set up skeleton of Code base as outlined in this document
-    # make each file and function name
+    #Task1: Set up skeleton of Code base as outlined in this document (make each file and function name).
 
-# Task2: initialize the terminal window.
+    # Task2: initialize the terminal window.
     # display the directions on the terminal to the user.
 
-# Task3: a loop that prompts the user to input commands for execution.
+    # Task3: a loop that prompts the user to input commands for execution.
     # store the commands on RAM/file etc.
