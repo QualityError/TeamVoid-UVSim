@@ -57,4 +57,12 @@ UVSim Program (CS2450)
         # Task5: create switch statements for Control operations.
         # Task6: increment IC.
     # US4: in main.cpp:
-        # ...
+        # Task3: implement Arithmetic operations.
+        # Task4: implement Control operations.
+    # US2: in memory.cpp:
+        # Task1: implement a data structure for memory and create three other instructions (IR, IC, A).
+        # Task1: implement a data structure for memory and create three other registers (IR, IC, A).
+    # US3: in vm.cpp:
+        # Task1: create a loop that will retrieve each instruction and load into IR.
+        # Task2: create switch statements for IO operations.
+        
