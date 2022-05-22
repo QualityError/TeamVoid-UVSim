@@ -25,39 +25,41 @@ UVSim Program (CS2450)
 # File: instructions.cpp
     # Contains instructions for execution.
     # VM will use this file to execute the instructions it retrieves from a file that stores all the instructions the user inputed.
-    # Example:
-        # READ:
-            # user_input = int(input()) // if user inputs an integer
-            # memory[memory_location] = user_input // memory_location is the last two bits of the instruction that the user inputs.
-            #                                      // it is retrieved by VM and passed as an argument to the READ instruction.
+## Example:
+### READ:
+    # user_input = int(input()) // if user inputs an integer
+    # memory[memory_location] = user_input // memory_location is the last two bits of the instruction that the user inputs.
+    #                                      // it is retrieved by VM and passed as an argument to the READ instruction.
 
 # File: memory.cpp:
     # The file contains a data structure with 100 memory locations and the values in each memory location.
     # It also contains IR (Instruction Register), IC (Instruction Counter), A (Accumulator) registers and their values.
     # Some other files are interconnected with this file.
     # Sort of like a dictionary in python:
-    # Example:
-        # {00: 00001, ..., 99: 00000}
-        # Or a simple array: [00001, 00005, ...]
+## Example:
+    # {00: 00001, ..., 99: 00000}
+    # Or a simple array: [00001, 00005, ...]
 
 # Ideas for user stories:
-    # US1: in instructions.cpp:
+## US1: in instructions.cpp:
         # Task1: implement IO operations.
         # Task2: implement Load/Store operations.
         # Task3: implement Arithmetic operations.
         # Task4: implement Control operations.
-    # US2: in memory.cpp:
+## US2: in memory.cpp:
         # Task1: implement a data structure for memory and create three other registers (IR, IC, A).
-    # US3: in vm.cpp:
+## US3: in vm.cpp:
         # Task1: create a loop that will retrieve each instruction and load into IR.
         # Task2: create switch statements for IO operations.
         # Task3: create switch statements for Load/Store operations.
         # Task4: create switch statements for Arithmetic operations.
         # Task5: create switch statements for Control operations.
         # Task6: increment IC.
-    # US4: in main.cpp:
-    # Task1: Set up skeleton of Code base as outlined in this document
+## US4: in main.cpp:
+
+# Task1: Set up skeleton of Code base as outlined in this document
     # make each file and function name
+
 # Task2: initialize the terminal window.
     # display the directions on the terminal to the user.
 
