@@ -13,6 +13,10 @@ class instructions {
         void subtract(int operand);
         void divide(int operand);
         void multiply(int operand);
+        void branch(int operand);
+        void branchneg(int operand);
+        void branchzero(int operand);
+        void halt(int operand);
     private:
         bool outOfBounds(int value);
 };
@@ -57,3 +61,23 @@ bool outOfBounds(int value){
 }
 
 
+//Control operations
+void instructions::branch (int operand) {
+    //I'll add stuff here. Just want to make sure I'm on the right track.
+    }
+}
+
+void instructions::branchneg (int operand) {
+    //I'll add stuff here. Just want to make sure I'm on the right track.
+    }
+}
+
+void instructions::branchzero (int operand) {
+    //I'll add stuff here. Just want to make sure I'm on the right track.
+    }
+}
+
+void instructions::halt (int operand) {
+    //I'll add stuff here. Just want to make sure I'm on the right track.
+    }
+}
