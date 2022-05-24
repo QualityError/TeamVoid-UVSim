@@ -8,8 +8,18 @@ vm.cpp
 using namespace std;
 
 
-void VM(Memory m1) {
-
+void VM(Memory m) {
+    m.IC = 0;
+    int op_code;
+    int operand;
+    while (m.IC < m.array_size) {
+        m.IR = m.get_value(m.IC); // retrieve the instruction from memory
+        op_code = (m.IR / 100);
+        operand = (m.IR % 100);
+        temporarySwitchFunction(op_code, operand); // This function will need to pass the memory object to instructions.cpp
+        
+        // Increment IC
+    }
 }
 
 //to be renamed and moved into a class
@@ -35,22 +45,26 @@ void temporarySwitchFunction(int op_code, int operand){
     }
 } 
 
-//switch statements for control operations
-void switchStatementsControlOperations(int op_code, int operand){
-    instructions instructions;//create instructions object
+//Switch statements for control operations
+void switchStatementsControlOpsFunction(int op_code, int operand) {
+    instructions instructions;
     switch(op_code) {
-        case 40://BRANCH
+        case 40://Branch
             instructions.branch(operand);
             break;
-        case 41://BRANCHNEG
+        case 41://BranchNeg
             instructions.branchneg(operand);
             break;
-        case 42://BRANCHZERO
+        case 42://BranchZero
             instructions.branchzero(operand);
             break;
         case 43://HALT
             instructions.halt(operand);
             break;
         default:
+            //Invalid op code
+            //display appropriate error
+
+
     }
 }
