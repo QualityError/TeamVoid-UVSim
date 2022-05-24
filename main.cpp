@@ -27,5 +27,7 @@ int main() {
     }
     m.print_memory();
 
+    VM(m);
+
     return 0;
 }
