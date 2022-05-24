@@ -44,3 +44,27 @@ void temporarySwitchFunction(int op_code, int operand){
             //display appropriate error
     }
 } 
+
+//Switch statements for control operations
+void switchStatementsControlOpsFunction(int op_code, int operand) {
+    instructions instructions;
+    switch(op_code) {
+        case 40://Branch
+            instructions.branch(operand);
+            break;
+        case 41://BranchNeg
+            instructions.branchneg(operand);
+            break;
+        case 42://BranchZero
+            instructions.branchzero(operand);
+            break;
+        case 43://HALT
+            instructions.halt(operand);
+            break;
+        default:
+            //Invalid op code
+            //display appropriate error
+
+
+    }
+}
