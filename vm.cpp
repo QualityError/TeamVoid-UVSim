@@ -12,7 +12,7 @@ void VM(Memory m) {
     m.IC = 0;
     int op_code;
     int operand;
-    while (m.IC < m.arraySize) {
+    while (m.IC < m.array_size) {
         m.IR = m.get_value(m.IC); // retrieve the instruction from memory
         op_code = (m.IR / 100);
         operand = (m.IR % 100);
