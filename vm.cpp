@@ -8,8 +8,18 @@ vm.cpp
 using namespace std;
 
 
-void VM(Memory m1) {
-
+void VM(Memory m) {
+    m.IC = 0;
+    int op_code;
+    int operand;
+    while (m.IC < m.array_size) {
+        m.IR = m.get_value(m.IC); // retrieve the instruction from memory
+        op_code = (m.IR / 100);
+        operand = (m.IR % 100);
+        temporarySwitchFunction(op_code, operand); // This function will need to pass the memory object to instructions.cpp
+        
+        // Increment IC
+    }
 }
 
 //to be renamed and moved into a class
