@@ -9,6 +9,8 @@ using namespace std;
 
 class instructions {
     public:
+        void load(int operand);
+        void store(int operand);
         void add(int operand);
         void subtract(int operand);
         void divide(int operand);
@@ -17,6 +19,15 @@ class instructions {
         bool outOfBounds(int value);
 };
 
+// LOAD and STORE Operations
+
+void instructions::load(int operand, Memory m) { // expecting memory object
+    m.A = m.memory_array[operand];
+}
+
+void instructions::store(int operand, Memory m) { // expecting memory object
+    m.memory_array[operand] = m.A;
+}
 
 //Arithmetic Operations
 
