@@ -19,6 +19,7 @@ void VM(Memory m) {
         temporarySwitchFunction(op_code, operand); // This function will need to pass the memory object to instructions.cpp
         
         // Increment IC
+        m.IC = m.IC + 1;
     }
 }
 
@@ -27,6 +28,12 @@ void VM(Memory m) {
 void temporarySwitchFunction(int op_code, int operand){
     instructions instructions;//create instructions object
     switch(op_code) {
+        case 20://LOAD
+            instructions.load(operand, m); // expecting memory object to pass to instructions.cpp
+            break;
+        case 21://STORE
+            instructions.store(operand, m); // expecting memory object to pass to instructions.cpp
+            break;
         case 30://ADD
             instructions.add(operand);
             break;
