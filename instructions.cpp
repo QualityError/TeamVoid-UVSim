@@ -68,12 +68,14 @@ void instructions::branch (int operand) {
     continue;
 }
 
+
 void instructions::branchneg (int operand) {
     if (operand < 0) {
         return true;
     }
     continue;
 }
+
 
 void instructions::branchzero (int operand) {
     if (operand == 0) {
@@ -85,3 +87,4 @@ void instructions::branchzero (int operand) {
 void instructions::halt (int operand) {
     break;
 }
+
