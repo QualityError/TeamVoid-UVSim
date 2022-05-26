@@ -50,16 +50,16 @@ void temporarySwitchFunction(int op_code, int operand){
 void switchStatementsControlOpsFunction(int op_code, int operand) {
     instructions instructions;
     switch(op_code) {
-        case 40://Branch
+        case 34://Branch
             instructions.branch(operand);
             break;
-        case 41://BranchNeg
+        case 35://BranchNeg
             instructions.branchneg(operand);
             break;
-        case 42://BranchZero
+        case 36://BranchZero
             instructions.branchzero(operand);
             break;
-        case 43://HALT
+        case 37://HALT
             instructions.halt(operand);
             break;
         default:
