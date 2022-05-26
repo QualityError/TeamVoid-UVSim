@@ -65,7 +65,5 @@ void switchStatementsControlOpsFunction(int op_code, int operand) {
         default:
             //Invalid op code
             //display appropriate error
-
-
     }
 }
