@@ -60,24 +60,28 @@ bool outOfBounds(int value){
     return false; // inbounds
 }
 
-
 //Control operations
 void instructions::branch (int operand) {
-    //I'll add stuff here. Just want to make sure I'm on the right track.
+    if (operand > 0) {
+        return true;
     }
+    continue;
 }
 
 void instructions::branchneg (int operand) {
-    //I'll add stuff here. Just want to make sure I'm on the right track.
+    if (operand < 0) {
+        return true;
     }
+    continue;
 }
 
 void instructions::branchzero (int operand) {
-    //I'll add stuff here. Just want to make sure I'm on the right track.
+    if (operand == 0) {
+        return true;
     }
+    continue;
 }
 
 void instructions::halt (int operand) {
-    //I'll add stuff here. Just want to make sure I'm on the right track.
-    }
+    break;
 }
