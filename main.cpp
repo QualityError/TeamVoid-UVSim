@@ -28,7 +28,7 @@ int main() {
             i--;
             continue;
         }
-        m.memory_array[i] = input;
+        m.set_value(i, input);
     }
     //m.print_memory(); // dump memory for debugging
 
