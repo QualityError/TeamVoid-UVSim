@@ -2,13 +2,15 @@
 Team Void: UVSim
 instructions.cpp
 */
-
+#include <memory.h>
 #include <iostream>
 using namespace std;
 
 
 class instructions {
     public:
+        void read(int operand);
+        void write(int operand);
         void load(int operand);
         void store(int operand);
         void add(int operand);
@@ -18,6 +20,21 @@ class instructions {
     private:
         bool outOfBounds(int value);
 };
+
+//I/O Operations
+
+void instructions::read(int operand, Memory m){
+  int input_value;
+  cout<<"\nEnter an integer: ";
+  cin>>input_value;
+  m.set_value(operand,input_value);
+}
+
+void instructions::write(int operand, Memory m){
+  int output_value = m.get_value(operand);
+  cout<<"The value at this location is: "<<output_value<<endl;
+}
+
 
 // LOAD and STORE Operations
 
@@ -66,5 +83,3 @@ bool outOfBounds(int value){
     }
     return false; // inbounds
 }
-
-
