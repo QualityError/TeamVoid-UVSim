@@ -62,24 +62,24 @@ bool outOfBounds(int value){
 
 //Branch control operations
 void instructions::branch (int operand, Memory m) {
-    if (m.A > 0) {
-        m.A goto m.get_value(operand);
+    if (m.IC > 0) {
+        m.IC = m.get_value(operand);
         if (m.A > 99999 || m.A < 1){
             //error
         }
     }
 }
 void instructions::branchneg (int operand, Memory m) {
-    if (m.A < 0) {
-        m.A goto m.get_value(operand);
+    if (m.IC < 0) {
+        m.IC = m.get_value(operand);
         if (m.A > 99999 || m.A < 1){
             //error
         }
     }
 }
 void instructions::branchzero (int operand, Memory m) {
-    if (m.A == 0) {
-        m.A goto m.get_value(operand);
+    if (m.IC == 0) {
+        m.IC = m.get_value(operand);
         if (m.A > 99999 || m.A < 1){
             //error
         }
@@ -90,7 +90,7 @@ void instructions::halt (int operand, Memory m) {
         return 0;
     }
     
-    if (m.A > 99999 || m.A < 1) {
+    if (m.IC > 99999 || m.A < 1) {
         //error
     }
 }
