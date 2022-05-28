@@ -81,9 +81,6 @@ void instructions::branchzero (int operand, Memory m) {
     }
 }
 void instructions::halt (int operand, Memory m) {
-    int main() {
-        return 0;
-    }
     
     if (m.IC > 99999 || m.A < 1) {
         //error

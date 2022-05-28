@@ -20,5 +20,5 @@ class instructions {
     private:
         bool outOfBounds(int value);
 };
-};
+
 #endif
