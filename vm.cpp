@@ -5,7 +5,7 @@ vm.cpp
 #include <iostream>
 #include "instructions.cpp"
 #include "memory.h"
-#inclue "vm.h"
+#include "vm.h"
 using namespace std;
 
 
