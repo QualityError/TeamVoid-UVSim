@@ -7,23 +7,6 @@ instructions.cpp
 #include "memory.h"
 using namespace std;
 
-
-
-class instructions {
-    public:
-        void add(int operand);
-        void subtract(int operand);
-        void divide(int operand);
-        void multiply(int operand);
-        void branch(int operand);
-        void branchneg(int operand);
-        void branchzero(int operand);
-        void halt(int operand);
-    private:
-        bool outOfBounds(int value);
-};
-
-
 //I/O Operations
 
 void instructions::read(int operand, Memory m){
