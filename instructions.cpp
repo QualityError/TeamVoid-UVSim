@@ -55,6 +55,13 @@ void instructions::divide (int operand, Memory m) {
     }
 }
 
+void instructions::multiply (int operand, Memory m) {
+    m.A *= m.get_value(operand);
+    if (m.A > 99999 || m.A < 1){
+        //error
+    }
+}
+
 //Branch control operations
 void instructions::branch (int operand, Memory m) {
     if (m.IC > 0) {
