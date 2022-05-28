@@ -11,8 +11,9 @@ using namespace std;
 
 //to be renamed and moved into a class
 //just a spot to temporarily hold swich statement
-void temporarySwitchFunction(int op_code, int operand, Memory m){
+bool call_Operation(int op_code, int operand, Memory m){
     instructions instructions;//create instructions object
+    bool continue_running = true;
     switch(op_code) {
       case 10://READ
         instructions.read(operand, m);
@@ -48,26 +49,31 @@ void temporarySwitchFunction(int op_code, int operand, Memory m){
           instructions.branchzero(operand, m);
           break;
       case 37://HALT
-          instructions.halt(operand, m);
+          continue_running = false;//sets continue running
           break;
       default:
           //Invalid op code
           //display appropriate error
           break;
     }
+
+    //print any errors set running to false
+
+    return continue_running;//sets continue running
 }
 
 void VM(Memory m) {
-    m.IC = 0;
+    m.IC = -1;
     int op_code;
     int operand;
-    while (m.IC < m.array_size) {
+    bool continue_running = true;
+    while (continue_running) {
+        // Increment IC
+        m.IC = m.IC + 1;
+
         m.IR = m.get_value(m.IC); // retrieve the instruction from memory
         op_code = (m.IR / 100);
         operand = (m.IR % 100);
-        temporarySwitchFunction(op_code, operand, m); // This function will need to pass the memory object to instructions.cpp
-        
-        // Increment IC
-        m.IC = m.IC + 1;
+        continue_running = call_Operation(op_code, operand, m); // This function will need to pass the memory object to instructions.cpp
     }
 }
