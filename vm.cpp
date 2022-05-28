@@ -2,9 +2,10 @@
 Team Void: UVSim
 vm.cpp
 */
-#include "memory.h"
 #include <iostream>
 #include "instructions.cpp"
+#include "memory.h"
+#inclue "vm.h"
 using namespace std;
 
 
@@ -64,7 +65,7 @@ void VM(Memory m) {
         m.IR = m.get_value(m.IC); // retrieve the instruction from memory
         op_code = (m.IR / 100);
         operand = (m.IR % 100);
-        temporarySwitchFunction(op_code, operand); // This function will need to pass the memory object to instructions.cpp
+        temporarySwitchFunction(op_code, operand, m); // This function will need to pass the memory object to instructions.cpp
         
         // Increment IC
         m.IC = m.IC + 1
