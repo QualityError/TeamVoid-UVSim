@@ -3,9 +3,9 @@ Team Void: UVSim
 vm.cpp
 */
 #include <iostream>
-#include "vm.h"
+#include "instructions.cpp"
 #include "memory.h"
-#include "instructions.h"
+#inclue "vm.h"
 using namespace std;
 
 
@@ -38,6 +38,18 @@ void temporarySwitchFunction(int op_code, int operand, Memory m){
       case 33://Multiple
           instructions.multiply(operand, m);
           break;
+      case 34://Branch
+          instructions.branch(operand, m);
+          break;
+      case 35://BranchNeg
+          instructions.branchneg(operand, m);
+          break;
+      case 36://BranchZero
+          instructions.branchzero(operand, m);
+          break;
+      case 37://HALT
+          instructions.halt(operand, m);
+          break;
       default:
           //Invalid op code
           //display appropriate error
@@ -56,5 +68,6 @@ void VM(Memory m) {
         temporarySwitchFunction(op_code, operand, m); // This function will need to pass the memory object to instructions.cpp
         
         // Increment IC
+        m.IC = m.IC + 1
     }
 }
