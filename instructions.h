@@ -16,7 +16,6 @@ class instructions {
         void branch(int operand, Memory m);
         void branchneg(int operand, Memory m);
         void branchzero(int operand, Memory m);
-        void halt(int operand, Memory m);
     private:
         bool outOfBounds(int value);
 };
