@@ -68,6 +68,6 @@ void VM(Memory m) {
         temporarySwitchFunction(op_code, operand, m); // This function will need to pass the memory object to instructions.cpp
         
         // Increment IC
-        m.IC = m.IC + 1
+        m.IC = m.IC + 1;
     }
 }
