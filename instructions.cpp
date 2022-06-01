@@ -7,8 +7,6 @@ instructions.cpp
 #include "memory.h"
 using namespace std;
 
-
-
 //I/O Operations
 
 void instructions::read(int operand, Memory m){
@@ -57,9 +55,35 @@ void instructions::divide (int operand, Memory m) {
     }
 }
 
-void instructions::multiply(int operand, Memory m) {
-  m.A *= m.get_value(operand);
-  if (m.A > 99999 || m.A < 1){
-    //error
-  }
+void instructions::multiply (int operand, Memory m) {
+    m.A *= m.get_value(operand);
+    if (m.A > 99999 || m.A < 1){
+        //error
+    }
+}
+
+//Branch control operations
+void instructions::branch (int operand, Memory m) {
+    if (m.IC > 0) {
+        m.IC = m.get_value(operand);
+        if (m.A > 99999 || m.A < 1){
+            //error
+        }
+    }
+}
+void instructions::branchneg (int operand, Memory m) {
+    if (m.IC < 0) {
+        m.IC = m.get_value(operand);
+        if (m.A > 99999 || m.A < 1){
+            //error
+        }
+    }
+}
+void instructions::branchzero (int operand, Memory m) {
+    if (m.IC == 0) {
+        m.IC = m.get_value(operand);
+        if (m.A > 99999 || m.A < 1){
+            //error
+        }
+    }
 }

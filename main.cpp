@@ -53,6 +53,7 @@ int main() {
         }
         m.set_value(i, input);
     }
+    m.print_memory(); // visualize memory
 
     VM(m);
 

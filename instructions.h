@@ -13,5 +13,11 @@ class instructions {
         void subtract(int operand, Memory m);
         void divide(int operand, Memory m);
         void multiply(int operand, Memory m);
+        void branch(int operand, Memory m);
+        void branchneg(int operand, Memory m);
+        void branchzero(int operand, Memory m);
+    private:
+        bool outOfBounds(int value);
 };
+
 #endif
