@@ -10,7 +10,7 @@ using namespace std;
 
 
 //to be renamed and moved into a class
-//just a spot to temporarily hold switch statement
+//just a spot to temporarily hold swich statement
 void temporarySwitchFunction(int op_code, int operand, Memory m){
     instructions instructions;//create instructions object
     switch(op_code) {
