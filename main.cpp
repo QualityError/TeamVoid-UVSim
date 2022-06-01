@@ -7,14 +7,14 @@ main.cpp
 #include <iostream>
 using namespace std;
 
-const int MAX_INPUT = 100;
+const int max_input = 100;
 
 int main() {
 
     Memory m;
     int input;
 
-    for (int i = 0; i < MAX_INPUT; i++) {
+    for (int i = 0; i < max_input; i++) {
         if (i < 10)
             cout << "0" << i << "? ";
         else
@@ -30,7 +30,7 @@ int main() {
         }
         m.set_value(i, input);
     }
-    //m.print_memory(); // dump memory for debugging
+    m.print_memory(); // visualize memory
 
     VM(m);
 
