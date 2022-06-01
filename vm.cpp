@@ -5,8 +5,21 @@ vm.cpp
 #include <iostream>
 #include "instructions.cpp"
 #include "memory.h"
-#inclue "vm.h"
+#include "vm.h"
 using namespace std;
+
+class UnrecognizedOpcodeException : public exception {
+  int _opcode;
+
+  public:
+    string what() {
+      return "Unrecognized opcode " + to_string(_opcode) + " used. Unable to execute line";
+    }
+
+  explicit UnrecognizedOpcodeException(int opcode) {
+    _opcode = opcode;
+  }
+};
 
 
 //to be renamed and moved into a class
@@ -51,6 +64,7 @@ void temporarySwitchFunction(int op_code, int operand, Memory m){
           instructions.halt(operand, m);
           break;
       default:
+          throw UnrecognizedOpcodeException(operand);
           //Invalid op code
           //display appropriate error
           break;
@@ -65,8 +79,13 @@ void VM(Memory m) {
         m.IR = m.get_value(m.IC); // retrieve the instruction from memory
         op_code = (m.IR / 100);
         operand = (m.IR % 100);
-        temporarySwitchFunction(op_code, operand, m); // This function will need to pass the memory object to instructions.cpp
-        
+
+        try {
+          temporarySwitchFunction(op_code, operand, m); // This function will need to pass the memory object to instructions.cpp
+        } catch (exception &e) {
+          cerr << e.what();
+        }
+
         // Increment IC
         m.IC = m.IC + 1;
     }
