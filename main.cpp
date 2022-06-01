@@ -54,11 +54,6 @@ int main() {
         m.set_value(i, input);
     }
 
-    // Welcome to the MLVM!
-    // Show possible opcodes
-    // explain possible memory locations
-    // print prompt
-
     VM(m);
 
     return 0;
