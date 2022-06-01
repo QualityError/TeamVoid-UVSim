@@ -10,7 +10,7 @@ using namespace std;
 
 
 //to be renamed and moved into a class
-//just a spot to temporarily hold swich statement
+//just a spot to temporarily hold switch statement
 void temporarySwitchFunction(int op_code, int operand, Memory m){
     instructions instructions;//create instructions object
     switch(op_code) {
@@ -54,7 +54,7 @@ void VM(Memory m) {
         op_code = (m.IR / 100);
         operand = (m.IR % 100);
         temporarySwitchFunction(op_code, operand, m); // This function will need to pass the memory object to instructions.cpp
-        
+
         // Increment IC
     }
 }
