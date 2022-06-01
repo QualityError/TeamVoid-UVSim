@@ -3,7 +3,7 @@ Team Void: UVSim
 vm.cpp
 */
 #include <iostream>
-#include "instructions.cpp"
+#include "instructions.h"
 #include "memory.h"
 #include "vm.h"
 using namespace std;
