@@ -7,7 +7,7 @@ main.o:
 memory.o:
 	g++ -c memory.cpp
 
-vm.o: 
+vm.o:
 	g++ -c vm.cpp
 
 instructions.o:
