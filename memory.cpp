@@ -9,13 +9,13 @@ using namespace std;
 
 void Memory::set_value(int mem_location, int value) {
     memory_array[mem_location] = value;
-    array_size = mem_location;
+    //array_size = mem_location;
 }
 
 int Memory::get_value(int mem_location) {
-    if (mem_location < array_size) {
+    //if (mem_location < array_size) {
         return memory_array[mem_location];
-    }
+    //}
     //need other return, not a void function
 }
 

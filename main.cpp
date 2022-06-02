@@ -14,6 +14,10 @@ int main() {
     Memory m;
     int input;
 
+    for (int i = 0; i < 100; i++){
+        m.set_value(i,0);
+    }
+
     for (int i = 0; i < max_input; i++) {
         if (i < 10)
             cout << "0" << i << "? ";
