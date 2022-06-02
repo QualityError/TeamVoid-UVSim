@@ -24,7 +24,7 @@ class UnrecognizedOpcodeException : public exception {
 
 //to be renamed and moved into a class
 //just a spot to temporarily hold swich statement
-bool call_Operation(int op_code, int operand, Memory m){
+bool call_Operation(int op_code, int operand, Memory& m){
     instructions instructions;//create instructions object
     bool continue_running = true;
     switch(op_code) {
@@ -35,10 +35,10 @@ bool call_Operation(int op_code, int operand, Memory m){
         instructions.write(operand, m);
         break;
       case 20://LOAD
-          instructions.load(operand, m); // expecting memory object to pass to instructions.cpp
+          instructions.load(operand, m);
           break;
       case 21://STORE
-          instructions.store(operand, m); // expecting memory object to pass to instructions.cpp
+          instructions.store(operand, m);
           break;
       case 30://ADD
           instructions.add(operand, m);
@@ -76,7 +76,7 @@ bool call_Operation(int op_code, int operand, Memory m){
     return continue_running;//sets continue running
 }
 
-void VM(Memory m) {
+void VM(Memory& m) {
     m.IC = -1;
     int op_code;
     int operand;

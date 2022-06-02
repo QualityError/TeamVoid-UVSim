@@ -14,6 +14,10 @@ int main() {
     Memory m{};
     int input;
 
+    for (int i = 0; i < 100; i++){//initialize memory to be all zeros
+        m.set_value(i,0);
+    }
+
     cout << "Welcome to the Utah Valley ML Simulator!!";
     cout << "=========================================";
     cout << "The UVML Sim simulates up 100 assembly commands";

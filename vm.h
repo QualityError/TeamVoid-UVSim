@@ -5,6 +5,6 @@
 #include "memory.h"
 using namespace std;
 
-void VM(Memory m1);
+void VM(Memory& m1);
 
 #endif
