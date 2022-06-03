@@ -3,83 +3,88 @@ Team Void: UVSim
 instructions.cpp
 */
 #include <iostream>
+#include <limits>
 #include "instructions.h"
 #include "memory.h"
 using namespace std;
 
 //I/O Operations
 
-void instructions::read(int operand, Memory m){
-    // if operand is not within range of memory (0-99), throw error: out of range
-    // check if input_value is a valid integer, throw error: invalid input (different types of invalid input)
+void instructions::read(int operand, Memory& m){
     int input_value;
     cout<<"\nEnter an integer: ";
-    cin>>input_value;//DO we need to validate or call validation method to re-enter data if bad?
+    if (!(cin >> input_value)) // check if input_value is a valid integer, throw error: not and integer
+        throw runtime_error("Error: Invalid input, must be an integer.");
     m.set_value(operand,input_value);
 }
 
-void instructions::write(int operand, Memory m){
-    // if operand is not within range of memory (0-99), throw error: out of range
+void instructions::write(int operand, Memory& m){
     int output_value = m.get_value(operand);
     cout<<"The value at this location is: "<<output_value<<endl;
 }
 
-
 // LOAD and STORE Operations
 
-void instructions::load(int operand, Memory m) {
-    // if operand is not within range of memory (0-99), throw error: out of range
+void instructions::load(int operand, Memory& m) {
     m.A = m.get_value(operand);
 }
 
-void instructions::store(int operand, Memory m) {
-    // if operand is not within range of memory (0-99), throw error: out of range
+void instructions::store(int operand, Memory& m) {
     m.set_value(operand, m.A);
 }
 
 //Arithmetic Operations
-
-void instructions::add (int operand, Memory m) {
-    // if operand is not within range of memory (0-99), throw error: out of range
+    
+void instructions::add (int operand, Memory& m) {
     // check if value at memory[operand] is an integer or double, otherwise throw error: invalid math operation
     m.A += m.get_value(operand);
-    // check if value in accumulator after operation occurs is an overflow, throw error: overflow
+    if (m.A > INT_MAX || m.A < INT_MIN) { // check if value in accumulator after operation occurs is an overflow, throw error: overflow
+        throw runtime_error("Error: Accumulator overflow.");
+    }
 }
-
-void instructions::subtract (int operand, Memory m) {
-    // if operand is not within range of memory (0-99), throw error: out of range
+    
+void instructions::subtract (int operand, Memory& m) {
     // check if value at memory[operand] is an integer or double, otherwise throw error: invalid math operation
     m.A -= m.get_value(operand);
-    // check if value in accumulator after operation occurs is an overflow, throw error: overflow
+    if (m.A > INT_MAX || m.A < INT_MIN) { // check if value in accumulator after operation occurs is an overflow, throw error: overflow
+        throw runtime_error("Error: Accumulator overflow.");
+    }
 }
 
-void instructions::divide (int operand, Memory m) {
-    // if operand is not within range of memory (0-99), throw error: out of range
+void instructions::divide (int operand, Memory& m) {
     // check if value at memory[operand] is an integer or double, otherwise throw error: invalid math operation
-    // check memory[operand] for zero, throw error: divide by zero
+    
+    if (m.get_value(operand) == 0) { // check memory[operand] for zero, throw error: divide by zero
+        throw runtime_error("Error: Divide by zero.")
+    }
     m.A /= m.get_value(operand);
-    // check if value in accumulator after operation occurs is an overflow, throw error: overflow
+    if (m.A > INT_MAX || m.A < INT_MIN) { // check if value in accumulator after operation occurs is an overflow, throw error: overflow
+        throw runtime_error("Error: Accumulator overflow.");
+    }
+}
+
+void instructions::multiply (int operand, Memory& m) {
+    // check if value at memory[operand] is an integer or double, otherwise throw error: invalid math operation
+    m.A *= m.get_value(operand);
+    if (m.A > INT_MAX || m.A < INT_MIN) { // check if value in accumulator after operation occurs is an overflow, throw error: overflow
+        throw runtime_error("Error: Accumulator overflow.");
+    }
 }
 
 //Branch control operations
-void instructions::branch (int operand, Memory m) {
-    // if operand is not within range of memory (0-99), throw error: invalid branch loaction
-    // check if IC is in a valid location (0-99), throw error: IC out of bounds
-    if (m.IC > 0) { // branch to location regardless of condition
-        m.IC = m.get_value(operand); // want to set IC to operand 
+
+void instructions::branch (int operand, Memory& m) {
+    m.IC = operand - 1; // decrement before returning so IC is pointing at correct location
+}
+
+void instructions::branchneg (int operand, Memory& m) {
+    if (m.A < 0) {
+        m.IC = operand - 1; // decrement before returning so IC is pointing at correct location
     }
 }
-void instructions::branchneg (int operand, Memory m) {
-    // if operand is not within range of memory (0-99), throw error: invalid branch loaction
-    // check if IC is in a valid location (0-99), throw error: IC out of bounds
-    if (m.IC < 0) { // want to check if A is negative not IC
-        m.IC = m.get_value(operand); // want to set IC to operand 
-    }
-}
-void instructions::branchzero (int operand, Memory m) {
-    // if operand is not within range of memory (0-99), throw error: invalid branch loaction
-    // check if IC is in a valid location (0-99), throw error: IC out of bounds
-    if (m.IC == 0) { // want to check if A is 0 not IC
-        m.IC = m.get_value(operand); // want to set IC to operand 
+
+void instructions::branchzero (int operand, Memory& m) {
+    if (m.A == 0) {
+        m.IC = operand - 1; // decrement before returning so IC is pointing at correct location 
     }
 }
