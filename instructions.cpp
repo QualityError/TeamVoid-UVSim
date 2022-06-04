@@ -3,7 +3,7 @@ Team Void: UVSim
 instructions.cpp
 */
 #include <iostream>
-#include <limits>
+#include <climits>
 #include "instructions.h"
 #include "memory.h"
 using namespace std;
@@ -55,7 +55,7 @@ void instructions::divide (int operand, Memory& m) {
     // check if value at memory[operand] is an integer or double, otherwise throw error: invalid math operation
     
     if (m.get_value(operand) == 0) { // check memory[operand] for zero, throw error: divide by zero
-        throw runtime_error("Error: Divide by zero.")
+        throw runtime_error("Error: Divide by zero.");
     }
     m.A /= m.get_value(operand);
     if (m.A > INT_MAX || m.A < INT_MIN) { // check if value in accumulator after operation occurs is an overflow, throw error: overflow
