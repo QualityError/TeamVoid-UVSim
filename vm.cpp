@@ -23,7 +23,7 @@ class UnrecognizedOpcodeException : public exception {
 
 
 //to be renamed and moved into a class
-//just a spot to temporarily hold swich statement
+//just a spot to temporarily hold switch statement
 bool call_Operation(int op_code, int operand, Memory& m){
     instructions instructions;//create instructions object
     bool continue_running = true;
@@ -65,9 +65,7 @@ bool call_Operation(int op_code, int operand, Memory& m){
           continue_running = false;//sets continue running
           break;
       default:
-          throw UnrecognizedOpcodeException(op_code);
-          //Invalid op code
-          //display appropriate error
+          throw UnrecognizedOpcodeException(op_code); //Invalid op code
           break;
     }
 
@@ -90,6 +88,8 @@ void VM(Memory& m) {
         operand = (m.IR % 100);
       
         try {
+          if (operand < 0 || operand > 99)
+            throw runtime_error("Error: Memory access violation.");
           continue_running = call_Operation(op_code, operand, m); // This function will need to pass the memory object to instructions.cpp
         } catch (exception &e) {
           cerr << e.what();
