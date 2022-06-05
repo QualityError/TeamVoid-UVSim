@@ -25,12 +25,3 @@ void Memory::print_memory() {
         cout << endl;
         }
   }
-
-void Memory::dumpResults(){
-    int op_code;
-    int operand;
-    IR = Memory::get_value(IC); // retrieve the instruction from memory
-    op_code = (IR / 100);
-    operand = (IR % 100);
-    cout<<op_code;
-}
