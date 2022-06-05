@@ -12,7 +12,7 @@ const int max_input = 100;
 
 int main() {
 
-    Memory m{};
+    Memory m;
     int input;
 
     for (int i = 0; i < 100; i++){//initialize memory to be all zeros
