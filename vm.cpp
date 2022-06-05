@@ -83,6 +83,10 @@ void VM(Memory& m) {
         // Increment IC
         m.IC = m.IC + 1;
 
+        if (m.IC >= 100) {
+          break;
+        }
+
         m.IR = m.get_value(m.IC); // retrieve the instruction from memory
         op_code = (m.IR / 100);
         operand = (m.IR % 100);
