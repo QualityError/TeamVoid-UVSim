@@ -1,3 +1,9 @@
+#.idea files
+.idea
+
+#other
+cmake-build-debug/
+
 #OSX .DS files
 .DS_Store
 
