@@ -19,11 +19,12 @@ int main() {
         m.set_value(i,0);
     }
 
-    cout << "*** Welcome to UVSim! ***";
+    cout << "*** Welcome to UVSim! ***" << endl;
     cout << "*** Please enter your program one instruction ***" << endl;
     cout << "*** ( or data word ) at a time into the input ***" << endl;
     cout << "*** text field.  The line number and a quest- ***" << endl;
     cout << "*** ion mark will display.  Type the instruc- ***" << endl;
+    cout << "*** ion for that line. Enter -99999 to compl- ***" << endl;
     cout << "*** plete entering your program and run.      ***\n" << endl;
 
     for (int i = 0; i < max_input; i++) {
