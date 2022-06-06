@@ -12,11 +12,11 @@ void Memory::set_value(int mem_location, int value) {
 }
 
 int Memory::get_value(int mem_location) {
-        return memory_array[mem_location];
+    return memory_array[mem_location];
 }
 
 void Memory::print_memory() {
-    cout<<"MEMORY"<<endl; cout<<"\t00\t\t01\t\t02\t\t03\t\t04\t\t05\t\t06\t\t07\t\t08\t\t09"<<endl; // Column count
+    cout<<"MEMORY"<<endl; cout<<"\t00\t01\t02\t03\t04\t05\t06\t07\t08\t09"<<endl; // Column count
     for(int i = 0; i < 100; i += 10){
       cout <<"0"<<i*0.1<< "\t"; // Row count
       for(int j = i; j < 10+i && j < 100; j++){ 
