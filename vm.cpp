@@ -83,7 +83,7 @@ void VM(Memory& m) {
         // Increment IC
         m.IC = m.IC + 1;
 
-        if (m.IC >= 100) {
+        if (m.IC >= 100 || m.IC == m.last_address) {
           break;
         }
 
