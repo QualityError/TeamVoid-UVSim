@@ -37,6 +37,7 @@ int main() {
         cin >> input;
 
         if (input == -99999) { // Exit condition
+            m.last_address = i;
             break;
         }
         if (input < 1000 || input > 9999) { // Not storing in memory if out of range
