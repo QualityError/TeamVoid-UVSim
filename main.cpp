@@ -51,8 +51,8 @@ int main() {
     }
 
     VM(m);
-
-    //m.print_memory(); // visualize memory
+    cout<<"*** Program loading complete ***"<<endl;
+    cout<<"*** Program execution begins ***"<<endl;
     m.dumpMemory();
 
     return 0;
