@@ -52,16 +52,16 @@ bool call_Operation(int op_code, int operand, Memory& m){
       case 33://Multiple
           instructions.multiply(operand, m);
           break;
-      case 34://Branch
+      case 40://Branch
           instructions.branch(operand, m);
           break;
-      case 35://BranchNeg
+      case 41://BranchNeg
           instructions.branchneg(operand, m);
           break;
-      case 36://BranchZero
+      case 42://BranchZero
           instructions.branchzero(operand, m);
           break;
-      case 37://HALT
+      case 43://HALT
           continue_running = false;//sets continue running
           break;
       default:
@@ -90,7 +90,7 @@ void VM(Memory& m) {
         m.IR = m.get_value(m.IC); // retrieve the instruction from memory
         op_code = (m.IR / 100);
         operand = (m.IR % 100);
-      
+
         try {
           if (operand < 0 || operand > 99)
             throw runtime_error("Error: Memory access violation.");
