@@ -52,10 +52,8 @@ int main() {
 
     VM(m);
 
-    m.print_memory(); // visualize memory
-    cout << m.IC << '\n';
-    cout << m.IR << '\n';
-    cout << m.A << '\n';
+    //m.print_memory(); // visualize memory
+    m.dumpMemory();
 
     return 0;
 }
