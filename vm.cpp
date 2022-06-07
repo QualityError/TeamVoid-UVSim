@@ -84,6 +84,7 @@ void VM(Memory& m) {
         m.IC = m.IC + 1;
 
         if (m.IC >= 100 || m.IC == m.last_address) {
+          m.IC--;
           break;
         }
 
