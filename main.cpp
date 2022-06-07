@@ -42,17 +42,17 @@ int main() {
         }
         if (input < 1000 || input > 9999) { // Not storing in memory if out of range
             i--;
-            cout << "ML command is the incorrect length, please input a two digit opcode and two digit memory location";
+            cout << "ML command is the incorrect length, please input a two digit opcode and two digit memory location.\n";
             cin.clear();
             cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
             continue;
         }
         m.set_value(i, input);
     }
-
+    
+    cout<<"\n*** Program loading complete ***"<<endl;
+    cout<<"*** Program execution begins ***"<<endl;
     VM(m);
-
-    //m.print_memory(); // visualize memory
     m.dumpMemory();
 
     return 0;
