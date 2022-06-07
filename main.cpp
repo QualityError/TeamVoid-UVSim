@@ -51,7 +51,7 @@ int main() {
     }
 
     VM(m);
-    cout<<"*** Program loading complete ***"<<endl;
+    cout<<"\n*** Program loading complete ***"<<endl;
     cout<<"*** Program execution begins ***"<<endl;
     m.dumpMemory();
 
