@@ -49,10 +49,10 @@ int main() {
         }
         m.set_value(i, input);
     }
-
-    VM(m);
+    
     cout<<"\n*** Program loading complete ***"<<endl;
     cout<<"*** Program execution begins ***"<<endl;
+    VM(m);
     m.dumpMemory();
 
     return 0;
