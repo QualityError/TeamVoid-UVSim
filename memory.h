@@ -6,8 +6,7 @@ using namespace std;
 
 class Memory {
     public:
-        // int array_size; // the actual number of instructions entered by user.
-        int last_address;
+        int last_address; // the actual number of instructions entered by user.
         int IR;
         int IC;
         int A;
