@@ -51,7 +51,8 @@ int main() {
 
     VM(m);
 
-    m.print_memory(); // visualize memory
+    //m.print_memory(); // visualize memory
+    m.dumpMemory();
 
     return 0;
 }
