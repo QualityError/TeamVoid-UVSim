@@ -26,7 +26,7 @@ void Memory::print_memory() {
         }
   }
 
-void Memory::dumpMemory() {
+void Memory::dumpResults() {
     int op_code = IR/100;
     int operand = IR%100;
     cout<<"\nREGISTERS:"<<endl;

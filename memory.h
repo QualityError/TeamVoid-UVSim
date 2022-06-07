@@ -14,7 +14,7 @@ class Memory {
         void set_value(int mem_location, int value);
         int get_value(int mem_location);
         void print_memory();
-        void dumpMemory();
+        void dumpResults();
     
     private://should not be used out =side of memory.cpp
         int memory_array[100];
