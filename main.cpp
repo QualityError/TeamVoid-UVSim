@@ -19,27 +19,13 @@ int main() {
         m.set_value(i,0);
     }
 
-    cout << "Welcome to the Utah Valley ML Simulator!!";
-    cout << "=========================================";
-    cout << "The UVML Sim simulates up 100 assembly commands";
-
-    cout << "Usage:\n";
-    cout << "One register is available, the accumulator register";
-    cout << "Input your desired op code followed by the desired memory location";
-    cout << "Possible Opcodes:";
-    cout << "10XX: Reads a word from the keyboard into the specific location in memory (XX)";
-    cout << "11XX: Write a word from the specific location in memory to screen";
-    cout << "20XX: Load a word from a specific location in memory into the accumulator";
-    cout << "21XX: Store a word from the accumulator into a specific location in memory";
-    cout << "30XX: Add a word from a specific location in memory to the word in the accumulator and leave the result in the accumulator";
-    cout << "31XX: Subtract a word from a specific location in memory from the word in the accumulator and leave the result in the accumulator";
-    cout << "32XX: Divide the word in the accumulator by a word from a specific location in memory and leave the result in the accumulator";
-    cout << "33XX: Multiply a word from a specific location in memory to the word in the accumulator and leave the result in the accumulator";
-    cout << "40XX: Branch to a specific location in memory.";
-    cout << "41XX: Branch to a specific location in memory if the accumulator is negative";
-    cout << "42XX: Branch to a specific location in memory if the accumulator is zero";
-    cout << "4300: Halt command";
-    cout << "Input -99999 to stop inputing commands";
+    cout << "*** Welcome to UVSim! ***" << endl;
+    cout << "*** Please enter your program one instruction ***" << endl;
+    cout << "*** ( or data word ) at a time into the input ***" << endl;
+    cout << "*** text field.  The line number and a quest- ***" << endl;
+    cout << "*** ion mark will display.  Type the instruc- ***" << endl;
+    cout << "*** ion for that line. Enter -99999 to compl- ***" << endl;
+    cout << "*** plete entering your program and run.      ***\n" << endl;
 
     for (int i = 0; i < max_input; i++) {
 
@@ -64,7 +50,7 @@ int main() {
     }
 
     VM(m);
-    
+
     m.print_memory(); // visualize memory
 
     return 0;
