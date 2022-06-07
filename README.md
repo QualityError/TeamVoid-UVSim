@@ -66,5 +66,3 @@ UVSim Program (CS2450)
 
     Task3:  a loop that prompts the user to input commands for execution.
             store the commands on RAM/file etc.
-
-## Jansen's Addition
