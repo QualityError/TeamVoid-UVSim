@@ -8,14 +8,12 @@ main.cpp
 #include <limits>
 using namespace std;
 
-const int max_input = 100;
-
 int main() {
 
     Memory m;
     int input;
 
-    for (int i = 0; i < 100; i++){//initialize memory to be all zeros
+    for (int i = 0; i < m.capacity; i++){//initialize memory to be all zeros
         m.set_value(i,0);
     }
 
@@ -27,7 +25,7 @@ int main() {
     cout << "*** ion for that line. Enter -99999 to compl- ***" << endl;
     cout << "*** plete entering your program and run.      ***\n" << endl;
 
-    for (int i = 0; i < max_input; i++) {
+    for (int i = 0; i < m.capacity; i++) {
 
         if (i < 10)
             cout << "0" << i << ": ";

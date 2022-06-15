@@ -10,6 +10,7 @@ class Memory {
         int IR;
         int IC;
         int A;
+        int capacity = 1000;
 
         void set_value(int mem_location, int value);
         int get_value(int mem_location);
@@ -17,7 +18,7 @@ class Memory {
         void dumpMemory();
     
     private://should not be used out =side of memory.cpp
-        int memory_array[100];
+        int memory_array[capacity];
 
 };
 
