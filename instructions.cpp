@@ -33,6 +33,10 @@ void instructions::store(int operand, Memory& m) {
     m.set_value(operand, m.A);
 }
 
+void instructions::loadval(int operand, Memory& m) {
+    m.A = m.get_value(operand);
+}
+
 //Arithmetic Operations
     
 void instructions::add (int operand, Memory& m) {

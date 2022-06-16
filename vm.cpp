@@ -3,6 +3,7 @@ Team Void: UVSim
 vm.cpp
 */
 #include <iostream>
+#include <string>
 #include "instructions.h"
 #include "memory.h"
 #include "vm.h"
@@ -39,6 +40,9 @@ bool call_Operation(int op_code, int operand, Memory& m){
           break;
       case 21://STORE
           instructions.store(operand, m);
+          break;
+      case 22://LOAD VAL
+          instructions.loadval(operand, m);
           break;
       case 30://ADD
           instructions.add(operand, m);
