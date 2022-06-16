@@ -17,6 +17,6 @@ def testExample():
     inputs ="1000\n1100\n4300\n-99999\n1200\n"
     output = runUVSim(inputs)
     #print(output)
-    return True #return true is passes false if failed
+    return True # if test passed
 
 main()
