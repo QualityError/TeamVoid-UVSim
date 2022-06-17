@@ -23,6 +23,12 @@ void instructions::write(int operand, Memory& m){
     cout<<"The value at this location is: "<<output_value<<endl;
 }
 
+void instructions::writeChar(int operand, Memory& m){
+    int asciiVal = m.get_value(operand);
+    char character = char(asciiVal);
+    cout<<"\nASCII: "<<asciiVal<<" --- Character: "<<character<<endl;
+}
+
 // LOAD and STORE Operations
 
 void instructions::load(int operand, Memory& m) {

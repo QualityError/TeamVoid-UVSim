@@ -7,6 +7,7 @@ class instructions {
     public:
         void read(int operand, Memory& m);
         void write(int operand, Memory& m);
+        void writeChar(int operand, Memory& m);
         void load(int operand, Memory& m);
         void loadval(int operand, Memory& m);
         void store(int operand, Memory& m);

@@ -35,6 +35,8 @@ bool call_Operation(int op_code, int operand, Memory& m){
       case 11://WRITE
         instructions.write(operand, m);
         break;
+      case 12: //WRITECHAR
+        instructions.writeChar(operand,m);
       case 20://LOAD
           instructions.load(operand, m);
           break;
