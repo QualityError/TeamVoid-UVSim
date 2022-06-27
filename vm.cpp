@@ -3,24 +3,11 @@ Team Void: UVSim
 vm.cpp
 */
 #include <iostream>
+#include "exceptions.h"
 #include "instructions.h"
 #include "memory.h"
 #include "vm.h"
 using namespace std;
-
-class UnrecognizedOpcodeException : public exception {
-  int _opcode;
-
-  public:
-    string what() {
-      return "Unrecognized opcode " + to_string(_opcode) + " used. Unable to execute line";
-    }
-
-  explicit UnrecognizedOpcodeException(int opcode) {
-    _opcode = opcode;
-  }
-};
-
 
 //to be renamed and moved into a class
 //just a spot to temporarily hold switch statement
@@ -69,7 +56,7 @@ bool call_Operation(int op_code, int operand, Memory& m){
           break;
     }
 
-    //print any errors set running to false
+    // print any errors set running to false
 
     return continue_running;//sets continue running
 }
@@ -94,7 +81,7 @@ void VM(Memory& m) {
 
         try {
           if (operand < 0 || operand > 99)
-            throw runtime_error("Error: Memory access violation.");
+            throw MemoryAccessViolation(op_code);
           continue_running = call_Operation(op_code, operand, m); // This function will need to pass the memory object to instructions.cpp
         } catch (exception &e) {
           cerr << e.what();
