@@ -18,7 +18,7 @@ class Memory {
         void dumpMemory();
     
     private://should not be used outside of memory.cpp
-        int memory_array[1000];//need a constructor method if you want to use capacity to define
+        int memory_array[capacity];
 
 };
 
