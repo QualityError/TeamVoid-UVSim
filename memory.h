@@ -17,7 +17,7 @@ class Memory {
         void print_memory();
         void dumpMemory();
     
-    private://should not be used out =side of memory.cpp
+    private://should not be used outside of memory.cpp
         int memory_array[capacity];
 
 };
