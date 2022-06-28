@@ -4,6 +4,7 @@ vm.cpp
 */
 #include <iostream>
 #include "exceptions.h"
+#include <string>
 #include "instructions.h"
 #include "memory.h"
 #include "vm.h"
@@ -21,11 +22,16 @@ bool call_Operation(int op_code, int operand, Memory& m){
       case 11://WRITE
         instructions.write(operand, m);
         break;
+      case 12: //WRITECHAR
+        instructions.writeChar(operand,m);
       case 20://LOAD
           instructions.load(operand, m);
           break;
       case 21://STORE
           instructions.store(operand, m);
+          break;
+      case 22://LOAD VAL
+          instructions.loadval(operand, m);
           break;
       case 30://ADD
           instructions.add(operand, m);
@@ -70,7 +76,7 @@ void VM(Memory& m) {
         // Increment IC
         m.IC = m.IC + 1;
 
-        if (m.IC >= 100 || m.IC == m.last_address) {
+        if (m.IC >= m.capacity || m.IC == m.last_address) {
           m.IC--;
           break;
         }
@@ -80,8 +86,8 @@ void VM(Memory& m) {
         operand = (m.IR % 100);
 
         try {
-          if (operand < 0 || operand > 99)
-            throw MemoryAccessViolation(op_code);
+          if (operand < 0 || operand > (m.capacity - 1))
+            throw runtime_error("Error: Memory access violation.");
           continue_running = call_Operation(op_code, operand, m); // This function will need to pass the memory object to instructions.cpp
         } catch (exception &e) {
           cerr << e.what();
