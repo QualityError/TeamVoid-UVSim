@@ -87,7 +87,7 @@ void VM(Memory& m) {
 
         try {
           if (operand < 0 || operand > (m.capacity - 1))
-            throw runtime_error("Error: Memory access violation.");
+            throw MemoryAccessViolation(operand);
           continue_running = call_Operation(op_code, operand, m); // This function will need to pass the memory object to instructions.cpp
         } catch (exception &e) {
           cerr << e.what();

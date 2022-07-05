@@ -18,7 +18,7 @@ class Memory {
         void dumpMemory();
     
     private://should not be used outside of memory.cpp
-        int memory_array[capacity];
+        int memory_array[1000];
 
 };
 
