@@ -41,7 +41,7 @@ void instructions::store(int operand, Memory& m) {
 }
 
 void instructions::loadval(int operand, Memory& m) {
-    m.A = m.get_value(operand);
+    m.A = operand;
 }
 
 //Arithmetic Operations
