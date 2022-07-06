@@ -17,11 +17,15 @@ int Memory::get_value(int mem_location) {
 
 void Memory::print_memory() {
     cout<<"\nMEMORY"<<endl; cout<<"\t00\t01\t02\t03\t04\t05\t06\t07\t08\t09"<<endl; // Column count
-    for(int i = 0; i < 100; i += 10){
-      cout <<"0"<<i*0.1<< "\t"; // Row count
-      for(int j = i; j < 10+i && j < 100; j++){ 
+    for(int i = 0; i < 1000; i += 10){
+      if(i<=99){ // Row count
+      cout <<"0"<<i*0.1<< "\t";
+    }else{
+      cout<<i*0.1<< "\t";
+    }
+      for(int j = i; j < 10+i && j < 1000; j++){
         cout << setw(5) << setfill('0') <<memory_array[j] << "\t"; // Converting output to string to display a 00000 format of the memory slot
-        }  
+        }
         cout << endl;
         }
   }
