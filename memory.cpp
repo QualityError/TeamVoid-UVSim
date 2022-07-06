@@ -31,13 +31,13 @@ void Memory::print_memory() {
   }
 
 void Memory::dumpMemory() {
-    int op_code = IR/100;
-    int operand = IR%100;
+    int op_code = IR/1000;
+    int operand = IR%1000;
     cout<<"\nREGISTERS:"<<endl;
     cout<<"Accumulator: \t\t"<<setw(5) << setfill('0')<<A<<endl;
     cout<<"InstructionCounter: \t"<<setw(2) << setfill('0')<<IC<<endl;
     cout<<"InstructionRegister: \t"<<setw(5) << setfill('0') <<IR<<endl;
     cout<<"OperationCode: \t\t"<<setw(2) << setfill('0')<<op_code<<endl;
-    cout<<"Operand: \t\t"<<setw(2) << setfill('0')<<operand<<endl;
+    cout<<"Operand: \t\t"<<setw(3) << setfill('0')<<operand<<endl;
     print_memory();
 }
