@@ -82,8 +82,8 @@ void VM(Memory& m) {
         }
 
         m.IR = m.get_value(m.IC); // retrieve the instruction from memory
-        op_code = (m.IR / 1000);
-        operand = (m.IR % 1000);
+        op_code = (m.IR / m.capacity);
+        operand = (m.IR % m.capacity);
 
         try {
           if (operand < 0 || operand > (m.capacity - 1))
