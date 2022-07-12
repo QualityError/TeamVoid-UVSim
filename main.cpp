@@ -8,16 +8,56 @@ main.cpp
 #include <limits>
 using namespace std;
 
-int main() {
+int enterCommands();
 
+int main() {
+    int input = 0;
+    string filePath;
+
+    bool saveInput = false, saveOutput = false;
+
+    cout << "*** Welcome to UVSim! ***" << endl;
+
+    while(input == 0) {
+        cout << "Please select an option" << endl;
+        cout << "1. Enter UVSim commands" << endl;
+        cout << "2. Load program from external file" << endl;
+        cout << "3. Enable/disable save input to file" << endl;
+        cout << "4. Enable/disable save output to file" << endl;
+
+        cin >> input;
+
+        switch(input) {
+            case 1:
+                return enterCommands();
+            case 2:
+                cout << "Enter file path" << endl;
+                cin >> filePath;
+                break;
+            case 3:
+                saveInput = !saveInput;
+                cout << "Save input is now: " << saveInput << endl;
+                break;
+            case 4:
+                saveOutput = !saveOutput;
+                cout << "Save output is now: " << saveOutput << endl;
+                break;
+            default:
+                cout << "That is an invalid option. Pleas try again." << endl;
+                input = 0;
+        }
+    }
+
+}
+
+int enterCommands() {
     Memory m;
-    int input;
+    int input = 0;
 
     for (int i = 0; i < m.capacity; i++){//initialize memory to be all zeros
         m.set_value(i,0);
     }
 
-    cout << "*** Welcome to UVSim! ***" << endl;
     cout << "*** Please enter your program one instruction ***" << endl;
     cout << "*** ( or data word ) at a time into the input ***" << endl;
     cout << "*** text field.  The line number and a quest- ***" << endl;
@@ -45,9 +85,10 @@ int main() {
             cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
             continue;
         }
+
         m.set_value(i, input);
     }
-    
+
     cout<<"\n*** Program loading complete ***"<<endl;
     cout<<"*** Program execution begins ***"<<endl;
     VM(m);
