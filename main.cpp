@@ -6,44 +6,81 @@ main.cpp
 #include "vm.h"
 #include <iostream>
 #include <limits>
+#include <string>
 using namespace std;
 
 void getUserProgramInput(Memory& m);
 void runProgramInMemory(Memory& m);
-
-
-
-int promptMenu(const char* question, const char* options[]){
-    cout << question << "\n";
-    for(int i = 0; i < 4; i++){
-        cout << i << "\t" << options[i] << "\n";
-    }
-
-    //user input
-    //need to validate
-    cout << "Enter Choice: ";
-    int input;
-    cin >> input;
-    return input;
-}
+int promptMenu(string question, string options[], int numOptions);
+void mainMenu();
+void subMenu();
+void runProgram();
 
 int main() {
+    
+    mainMenu();
+
+    return 0;
+}
+
+void mainMenu(){
+    string options[4] = { "Run Regular Program", "second option", "Other Options", "Quit" };
+    int choice = promptMenu("string", options, sizeof(options)/sizeof(options[0]));
+    switch(choice){
+      case 1:
+        runProgram();
+        break;
+      case 2:
+        cout << "doing the second thing" << "\n";
+        break;
+      case 3:
+        subMenu();
+        break;
+      case 4:
+        cout << "Exiting Program" << "\n";
+        return;
+        break;
+    }
+    mainMenu();//to go back to this menu after option execution
+}
+
+void subMenu(){
+    string options[4] = { "Run Regular Program", "second option", "Other Options", "To Main Menu" };
+    int choice = promptMenu("string", options, sizeof(options)/sizeof(options[0]));
+    switch(choice){
+      case 1:
+        runProgram();
+        break;
+      case 2:
+        cout << "doing the second thing" << "\n";
+        break;
+      case 3:
+        subMenu();
+        break;
+      case 4://to Main Menu
+        return;//assumes main menu is the only method calling this menu
+        break;
+    }
+    subMenu();//to go back to this menu after option execution
+}
+
+void runProgram(){
+
     //set up memory
     Memory m;
     for (int i = 0; i < m.capacity; i++){//initialize memory to be all zeros
         m.set_value(i,0);
     }
+
+    getUserProgramInput(m);
+
+    runProgramInMemory(m);
     
-    const char* options[4] = { "Blue", "Red", "Orange", "Yellow" };
-    int choice = promptMenu("string", options);
-    //switch(choice)
-
-    //getUserProgramInput(m);
-
-    //runProgramInMemory(m);
-
-    return 0;
 }
+
+// void subMenu(){
+
+// }
 
 void runProgramInMemory(Memory& m){
     //run program in memory
@@ -87,4 +124,18 @@ void getUserProgramInput(Memory& m){
     }
     
     cout<<"\n*** Program loading complete ***"<<endl;
+}
+
+int promptMenu(string question, string options[], int numOptions){
+    cout << question << "\n";
+    for(int i = 0; i < numOptions; i++){
+        cout << i+1 << "\t" << options[i] << "\n";
+    }
+
+    //user input
+    //need to validate
+    cout << "Enter Choice: ";
+    int input;
+    cin >> input;
+    return input;
 }
