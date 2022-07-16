@@ -5,13 +5,26 @@ main.cpp
 #include "memory.h"
 #include "vm.h"
 #include <iostream>
+#include <fstream>
 #include <limits>
+#include <vector>
 using namespace std;
+
+const string TEMP_FILE = "instructions.txt";
+
+void write_to_file(vector<int> v, string file_name = TEMP_FILE) {
+    ofstream ofs;
+    ofs.open(file_name, fstream::trunc);
+    for (const int& i : v) // iterate through vector putting each item in file
+        ofs << i << "\n";
+    ofs.close();
+}
 
 int main() {
 
     Memory m;
     int input;
+    vector<int> write_vector; // write to file vector
 
     for (int i = 0; i < m.capacity; i++){//initialize memory to be all zeros
         m.set_value(i,0);
@@ -35,6 +48,7 @@ int main() {
         cin >> input;
 
         if (input == -99999) { // Exit condition
+            write_vector.push_back(input);
             m.last_address = i;
             break;
         }
@@ -45,9 +59,11 @@ int main() {
             cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
             continue;
         }
+        write_vector.push_back(input);
         m.set_value(i, input);
     }
-    
+
+    write_to_file(write_vector); // default to TEMP_FILE, can use filename given by user
     cout<<"\n*** Program loading complete ***"<<endl;
     cout<<"*** Program execution begins ***"<<endl;
     VM(m);
