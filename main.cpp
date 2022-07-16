@@ -6,17 +6,90 @@ main.cpp
 #include "vm.h"
 #include <iostream>
 #include <limits>
+#include <string>
 using namespace std;
 
+void getUserProgramInput(Memory& m);
+void runProgramInMemory(Memory& m);
+int promptMenu(string question, string options[], int numOptions);
+void mainMenu();
+void subMenu();
+void runProgram();
+
 int main() {
+    
+    mainMenu();
 
+    return 0;
+}
+
+void mainMenu(){
+    string options[4] = { "Run Regular Program", "second option", "Other Options", "Quit" };
+    int choice = promptMenu("string", options, sizeof(options)/sizeof(options[0]));
+    switch(choice){
+      case 1:
+        runProgram();
+        break;
+      case 2:
+        cout << "doing the second thing" << "\n";
+        break;
+      case 3:
+        subMenu();
+        break;
+      case 4:
+        cout << "Exiting Program" << "\n";
+        return;
+        break;
+    }
+    mainMenu();//to go back to this menu after option execution
+}
+
+void subMenu(){
+    string options[4] = { "Run Regular Program", "second option", "Other Options", "To Main Menu" };
+    int choice = promptMenu("string", options, sizeof(options)/sizeof(options[0]));
+    switch(choice){
+      case 1:
+        runProgram();
+        break;
+      case 2:
+        cout << "doing the second thing" << "\n";
+        break;
+      case 3:
+        subMenu();
+        break;
+      case 4://to Main Menu
+        return;//assumes main menu is the only method calling this menu
+        break;
+    }
+    subMenu();//to go back to this menu after option execution
+}
+
+void runProgram(){
+
+    //set up memory
     Memory m;
-    int input;
-
     for (int i = 0; i < m.capacity; i++){//initialize memory to be all zeros
         m.set_value(i,0);
     }
 
+    getUserProgramInput(m);
+
+    runProgramInMemory(m);
+    
+}
+
+// void subMenu(){
+
+// }
+
+void runProgramInMemory(Memory& m){
+    //run program in memory
+    cout<<"*** Program execution begins ***"<<endl;
+    VM(m);
+    m.dumpMemory();
+}
+
+void getUserProgramInput(Memory& m){
     cout << "*** Welcome to UVSim! ***" << endl;
     cout << "*** Please enter your program one instruction ***" << endl;
     cout << "*** ( or data word ) at a time into the input ***" << endl;
@@ -24,6 +97,8 @@ int main() {
     cout << "*** ion mark will display.  Type the instruc- ***" << endl;
     cout << "*** ion for that line. Enter -99999 to compl- ***" << endl;
     cout << "*** plete entering your program and run.      ***\n" << endl;
+
+    int input;
 
     for (int i = 0; i < m.capacity; i++) {
 
@@ -49,9 +124,18 @@ int main() {
     }
     
     cout<<"\n*** Program loading complete ***"<<endl;
-    cout<<"*** Program execution begins ***"<<endl;
-    VM(m);
-    m.dumpMemory();
+}
 
-    return 0;
+int promptMenu(string question, string options[], int numOptions){
+    cout << question << "\n";
+    for(int i = 0; i < numOptions; i++){
+        cout << i+1 << "\t" << options[i] << "\n";
+    }
+
+    //user input
+    //need to validate
+    cout << "Enter Choice: ";
+    int input;
+    cin >> input;
+    return input;
 }
