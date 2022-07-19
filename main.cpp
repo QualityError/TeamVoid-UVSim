@@ -16,6 +16,7 @@ int promptMenu(string question, string options[], int numOptions);
 void mainMenu();
 void subMenu();
 void runProgram();
+void loadFromFile(Memory& m);
 
 int main() {
 
@@ -73,7 +74,8 @@ void runProgram(){
         m.set_value(i,0);
     }
 
-    getUserProgramInput(m);
+    // getUserProgramInput(m);
+    loadFromFile(m);
 
     runProgramInMemory(m);
 
@@ -87,21 +89,28 @@ void runProgramInMemory(Memory& m){
     VM(m);
     m.dumpMemory();
 }
+
 // Loading saved data from a file to the Memory
 void loadFromFile(Memory& m){
-  int element;
+
   ifstream file;
     file.open("instructionsData.txt");
 
-
     if (file.is_open()) {
         int i = 0;
+        int element;
+
         while (file >> element) {
+          if (element == -99999) { // Exit condition
+              m.last_address = i;
+              break;
+          }
             m.set_value(i++,element); // Reading instructions to the memory one by one
+
     }
   }
-  // Need to figure out how to read resultsData into the array
-
+  cout<<"\n*** Program loading complete ***"<<endl;
+  // error handling left to do
 }
 
 
