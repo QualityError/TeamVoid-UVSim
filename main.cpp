@@ -89,9 +89,12 @@ void runProgramInMemory(Memory& m){
 
 // Loading saved data from a file to the Memory
 void loadFromFile(Memory& m){
-
+  /*
+  Assuming instructionsData contains instructions;
+           resultsData contains results.
+  */
   ifstream file;
-    file.open("instructionsData.txt");
+    file.open("instructionsData.txt")// Temporary instructions storage name
     int element;
 
     if (file.is_open()) {
