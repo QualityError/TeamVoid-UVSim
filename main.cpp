@@ -7,6 +7,7 @@ main.cpp
 #include <iostream>
 #include <limits>
 #include <string>
+#include <fstream>
 using namespace std;
 
 void getUserProgramInput(Memory& m);
@@ -76,7 +77,7 @@ void runProgram(){
 
     runProgramInMemory(m);
 
-    loadFromFile(m);
+
 
 }
 
@@ -86,16 +87,12 @@ void runProgramInMemory(Memory& m){
     VM(m);
     m.dumpMemory();
 }
-
 // Loading saved data from a file to the Memory
 void loadFromFile(Memory& m){
-  /*
-  Assuming instructionsData contains instructions;
-           resultsData contains results.
-  */
+  int element;
   ifstream file;
-    file.open("instructionsData.txt")// Temporary instructions storage name
-    int element;
+    file.open("instructionsData.txt");
+
 
     if (file.is_open()) {
         int i = 0;
