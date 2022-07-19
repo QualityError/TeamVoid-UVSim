@@ -17,7 +17,7 @@ void subMenu();
 void runProgram();
 
 int main() {
-    
+
     mainMenu();
 
     return 0;
@@ -75,7 +75,9 @@ void runProgram(){
     getUserProgramInput(m);
 
     runProgramInMemory(m);
-    
+
+    loadFromFile(m);
+
 }
 
 void runProgramInMemory(Memory& m){
@@ -84,6 +86,24 @@ void runProgramInMemory(Memory& m){
     VM(m);
     m.dumpMemory();
 }
+
+// Loading saved data from a file to the Memory
+void loadFromFile(Memory& m){
+
+  ifstream file;
+    file.open("instructionsData.txt");
+    int element;
+
+    if (file.is_open()) {
+        int i = 0;
+        while (file >> element) {
+            m.set_value(i++,element); // Reading instructions to the memory one by one
+    }
+  }
+  // Need to figure out how to read resultsData into the array
+
+}
+
 
 void getUserProgramInput(Memory& m){
     cout << "*** Welcome to UVSim! ***" << endl;
@@ -118,7 +138,7 @@ void getUserProgramInput(Memory& m){
         }
         m.set_value(i, input);
     }
-    
+
     cout<<"\n*** Program loading complete ***"<<endl;
 }
 
