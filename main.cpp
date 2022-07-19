@@ -78,10 +78,6 @@ void runProgram(){
     
 }
 
-// void subMenu(){
-
-// }
-
 void runProgramInMemory(Memory& m){
     //run program in memory
     cout<<"*** Program execution begins ***"<<endl;
@@ -132,10 +128,20 @@ int promptMenu(string question, string options[], int numOptions){
         cout << i+1 << "\t" << options[i] << "\n";
     }
 
-    //user input
-    //need to validate
-    cout << "Enter Choice: ";
     int input;
-    cin >> input;
+    //get and validate user input
+    cout<<"Enter Choice:";
+    cin>>input;
+    while(1){
+      if(cin.fail() || input < 1 || input > numOptions){
+        cin.clear();
+        cin.ignore(numeric_limits<streamsize>::max(),'\n');
+        cout<<"Please enter a valid input"<<endl;
+        cin>>input;
+      } else {
+        break;
+      }
+    }
+
     return input;
 }
