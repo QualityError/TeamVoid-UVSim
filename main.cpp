@@ -7,6 +7,7 @@ main.cpp
 #include <iostream>
 #include <limits>
 #include <string>
+#include <fstream>
 using namespace std;
 
 void getUserProgramInput(Memory& m);
@@ -15,9 +16,10 @@ int promptMenu(string question, string options[], int numOptions);
 void mainMenu();
 void subMenu();
 void runProgram();
+void loadFromFile(Memory& m);
 
 int main() {
-    
+
     mainMenu();
 
     return 0;
@@ -72,10 +74,13 @@ void runProgram(){
         m.set_value(i,0);
     }
 
-    getUserProgramInput(m);
+    // getUserProgramInput(m);
+    loadFromFile(m);
 
     runProgramInMemory(m);
-    
+
+
+
 }
 
 void runProgramInMemory(Memory& m){
@@ -84,6 +89,30 @@ void runProgramInMemory(Memory& m){
     VM(m);
     m.dumpMemory();
 }
+
+// Loading saved data from a file to the Memory
+void loadFromFile(Memory& m){
+
+  ifstream file;
+    file.open("instructionsData.txt");
+
+    if (file.is_open()) {
+        int i = 0;
+        int element;
+
+        while (file >> element) {
+          if (element == -99999) { // Exit condition
+              m.last_address = i;
+              break;
+          }
+            m.set_value(i++,element); // Reading instructions to the memory one by one
+
+    }
+  }
+  cout<<"\n*** Program loading complete ***"<<endl;
+  // error handling left to do
+}
+
 
 void getUserProgramInput(Memory& m){
     cout << "*** Welcome to UVSim! ***" << endl;
@@ -118,7 +147,7 @@ void getUserProgramInput(Memory& m){
         }
         m.set_value(i, input);
     }
-    
+
     cout<<"\n*** Program loading complete ***"<<endl;
 }
 
