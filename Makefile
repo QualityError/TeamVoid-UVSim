@@ -3,3 +3,6 @@ UVSim.app:
 
 clean:
 	rm UVSim.app
+
+test:
+	python3 TestProgram.py

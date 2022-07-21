@@ -18,7 +18,7 @@ def runUVSim(inputs):
 def testExample():#Enters a number in to an adress and checks if it is there
     inputs ="10000\n11000\n43000\n-99999\n12000\n"
     output = runUVSim(inputs)
-    print(output)
+    #print(output)
     passed = True
     if(not str(output).__contains__("00\t12000\t11000\t43000")):#if string is not present
         passed = False

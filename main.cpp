@@ -5,9 +5,9 @@ main.cpp
 #include "memory.h"
 #include "vm.h"
 #include <iostream>
-#include <fstream>
-#include <string>
 #include <limits>
+#include <string>
+#include <fstream>
 #include <vector>
 using namespace std;
 
@@ -83,8 +83,6 @@ void runProgram(bool write_flag){
 
     //set up memory
     Memory m;
-    int input;
-
     for (int i = 0; i < m.capacity; i++){//initialize memory to be all zeros
         m.set_value(i,0);
     }
@@ -167,8 +165,8 @@ vector<int> getUserProgramInput(Memory& m){
         m.set_value(i, input);
     }
 
-    return write_vector; // default to TEMP_FILE, can use filename given by user
     cout<<"\n*** Program loading complete ***"<<endl;
+    return write_vector; // default to TEMP_FILE, can use filename given by user
 }
 
 int promptMenu(string question, string options[], int numOptions){
