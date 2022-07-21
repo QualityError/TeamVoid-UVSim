@@ -5,9 +5,13 @@ main.cpp
 #include "memory.h"
 #include "vm.h"
 #include <iostream>
+#include <fstream>
+#include <cstdio>
 #include <limits>
 #include <string>
 using namespace std;
+
+string outFile = "out.txt";
 
 void getUserProgramInput(Memory& m);
 void runProgramInMemory(Memory& m);
@@ -15,12 +19,17 @@ int promptMenu(string question, string options[], int numOptions);
 void mainMenu();
 void subMenu();
 void runProgram();
+void outToFile(Memory& m);
 
 int main() {
     
     mainMenu();
 
     return 0;
+}
+
+void outToFile(Memory& m) {
+  m.dumpMemory(outFile);
 }
 
 void mainMenu(){
@@ -82,7 +91,8 @@ void runProgramInMemory(Memory& m){
     //run program in memory
     cout<<"*** Program execution begins ***"<<endl;
     VM(m);
-    m.dumpMemory();
+    m.dumpMemory("");
+    outToFile(m);
 }
 
 void getUserProgramInput(Memory& m){
