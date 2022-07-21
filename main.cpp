@@ -20,6 +20,7 @@ void mainMenu();
 void subMenu();
 void runProgram(bool write_flag);
 void write_to_file(vector<int> v, string filename);
+void loadFromFile(Memory& m);
 
 int main() {
     
@@ -89,25 +90,44 @@ void runProgram(bool write_flag){
     }
 
     // call write_to_file with vector passed back by getUserProgramInput in variable, check flag
-    if(write_flag) {
+    if (write_flag) {
         write_to_file(getUserProgramInput(m));
     } 
     else {
-        getUserProgramInput(m);
+        // getUserProgramInput(m);
+        loadFromFile(m);
         runProgramInMemory(m);
     }
-    
 }
-
-// void subMenu(){
-
-// }
 
 void runProgramInMemory(Memory& m){
     //run program in memory
     cout<<"*** Program execution begins ***"<<endl;
     VM(m);
     m.dumpMemory();
+}
+
+// Loading saved data from a file to the Memory
+void loadFromFile(Memory& m){
+
+  ifstream file;
+    file.open("instructionsData.txt");
+
+    if (file.is_open()) {
+        int i = 0;
+        int element;
+
+        while (file >> element) {
+          if (element == -99999) { // Exit condition
+              m.last_address = i;
+              break;
+          }
+            m.set_value(i++,element); // Reading instructions to the memory one by one
+
+    }
+  }
+  cout<<"\n*** Program loading complete ***"<<endl;
+  // error handling left to do
 }
 
 vector<int> getUserProgramInput(Memory& m){
@@ -157,10 +177,20 @@ int promptMenu(string question, string options[], int numOptions){
         cout << i+1 << "\t" << options[i] << "\n";
     }
 
-    //user input
-    //need to validate
-    cout << "Enter Choice: ";
     int input;
-    cin >> input;
+    //get and validate user input
+    cout<<"Enter Choice:";
+    cin>>input;
+    while(1){
+      if(cin.fail() || input < 1 || input > numOptions){
+        cin.clear();
+        cin.ignore(numeric_limits<streamsize>::max(),'\n');
+        cout<<"Please enter a valid input"<<endl;
+        cin>>input;
+      } else {
+        break;
+      }
+    }
+
     return input;
 }
