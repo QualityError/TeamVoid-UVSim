@@ -70,6 +70,7 @@ void mainMenu(){
         break;
       case 5:
         cout << "About stuff can go here! But UVSIM is super cool and we're all super cool and that's about all I got to say about that." << "\n";
+        mainMenu();
         return;
         break;
     }
