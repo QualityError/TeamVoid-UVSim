@@ -9,33 +9,29 @@ main.cpp
 #include <cstdio>
 #include <limits>
 #include <string>
-#include <fstream>
 #include <vector>
 using namespace std;
 
+
+string outFile = "memory.txt";
 const string TEMP_FILE = "instructions.txt";
 
 vector<int> getUserProgramInput(Memory& m);
-string outFile = "out.txt";
-
 void runProgramInMemory(Memory& m);
 int promptMenu(string question, string options[], int numOptions);
 void mainMenu();
 void subMenu();
-
-void runProgram(bool write_flag);
-void write_to_file(vector<int> v, string filename);
-void outToFile(Memory& m);
-
+void runProgram(bool instructions_write_flag, bool instructions_read_flag, bool memory_output_flag);
+void write_instructions_to_file(vector<int> v, string filename);
+void memoryOutToFile(Memory& m);
 void loadFromFile(Memory& m);
 
 int main() {
-    
     mainMenu();
     return 0;
 }
 
-void write_to_file(vector<int> v, string file_name = TEMP_FILE) {
+void write_instructions_to_file(vector<int> v, string file_name = TEMP_FILE) {//for user instructions
     ofstream ofs;
     ofs.open(file_name, fstream::trunc);
     for (const int& i : v) // iterate through vector putting each item in file
@@ -43,26 +39,30 @@ void write_to_file(vector<int> v, string file_name = TEMP_FILE) {
     ofs.close();
 }
 
-void outToFile(Memory& m) {
+void memoryOutToFile(Memory& m) {//for memory
   m.dumpMemory(outFile);
 }
 
 void mainMenu(){
-    string options[5] = { "Run Regular Program", "Save", "Load", "Quit", "About"};
+    string options[5] = { "Run Regular Program", "Run Program and Save", "Run Program from Load", "Quit", "About"};
     int choice = promptMenu("Hello there", options, sizeof(options)/sizeof(options[0]));
-    bool write_flag = false;
+    bool instructions_write_flag = false;
+    bool instructions_read_flag = false;
+    bool memory_output_flag = false;
     switch(choice){
       case 1:
-        runProgram(write_flag);
+        runProgram(instructions_write_flag, instructions_read_flag, memory_output_flag);
         break;
       case 2:// write to file
-        write_flag = true;
-        runProgram(write_flag);
+        instructions_write_flag = true;
+        memory_output_flag = true;
+        runProgram(instructions_write_flag, instructions_read_flag, memory_output_flag);
         cout << "Saving..." << "\n";
         break;
       case 3:
         cout << "Loading..." << "\n";
-        //subMenu();
+        instructions_read_flag = true;
+        runProgram(instructions_write_flag, instructions_read_flag, memory_output_flag);
         break;
       case 4:
         cout << "Exiting Program" << "\n";
@@ -73,7 +73,7 @@ void mainMenu(){
         return;
         break;
     }
-    mainMenu();//to go back to this menu after option execution
+    //mainMenu();//to go back to this menu after option execution
 }
 
 void subMenu() {
@@ -82,7 +82,7 @@ void subMenu() {
     int choice = promptMenu("This is the subMenu", options, sizeof(options) / sizeof(options[0]));
     switch (choice) {
     case 1:
-        // runProgram(write_flag); // commented out so program compiles :) see mainMenu
+        // runProgram(instructions_write_flag); // commented out so program compiles :) see mainMenu
         break;
     case 2:
         cout << "Saving..." << "\n";
@@ -97,7 +97,7 @@ void subMenu() {
     subMenu();//to go back to this menu after option execution
 }
 
-void runProgram(bool write_flag){
+void runProgram(bool instructions_write_flag, bool instructions_read_flag, bool memory_output_flag){
 
     //set up memory
     Memory m;
@@ -105,14 +105,24 @@ void runProgram(bool write_flag){
         m.set_value(i,0);
     }
 
-    // call write_to_file with vector passed back by getUserProgramInput in variable, check flag
-    if (write_flag) {
-        write_to_file(getUserProgramInput(m));
-    } 
-    else {
-        // getUserProgramInput(m);
-        loadFromFile(m);
-        runProgramInMemory(m);
+    //user input
+    vector<int> input;
+    if(instructions_read_flag){
+      loadFromFile(m);
+    } else {
+      input = getUserProgramInput(m);
+    }
+
+    // call write_instructions_to_file with vector passed back by getUserProgramInput in variable, check flag
+    if(instructions_write_flag){
+      write_instructions_to_file(input);
+    }
+    
+    VM(m);
+    m.dumpMemory("");//arg is blank file path
+
+    if(memory_output_flag){
+      memoryOutToFile(m);
     }
 }
 
@@ -121,14 +131,14 @@ void runProgramInMemory(Memory& m){
     cout<<"*** Program execution begins ***"<<endl;
     VM(m);
     m.dumpMemory("");
-    outToFile(m);
+    memoryOutToFile(m);
 }
 
 // Loading saved data from a file to the Memory
 void loadFromFile(Memory& m){
 
   ifstream file;
-    file.open("instructionsData.txt");
+    file.open("instructions.txt");
 
     if (file.is_open()) {
         int i = 0;
