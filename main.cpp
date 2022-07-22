@@ -9,6 +9,7 @@ main.cpp
 #include <cstdio>
 #include <limits>
 #include <string>
+#include <fstream>
 using namespace std;
 
 string outFile = "out.txt";
@@ -20,9 +21,10 @@ void mainMenu();
 void subMenu();
 void runProgram();
 void outToFile(Memory& m);
+void loadFromFile(Memory& m);
 
 int main() {
-    
+
     mainMenu();
 
     return 0;
@@ -33,46 +35,50 @@ void outToFile(Memory& m) {
 }
 
 void mainMenu(){
-    string options[4] = { "Run Regular Program", "second option", "Other Options", "Quit" };
-    int choice = promptMenu("string", options, sizeof(options)/sizeof(options[0]));
+    string options[5] = { "Run Regular Program", "Save", "Load", "Quit", "About"};
+    int choice = promptMenu("Hello there", options, sizeof(options)/sizeof(options[0]));
     switch(choice){
       case 1:
         runProgram();
         break;
       case 2:
-        cout << "doing the second thing" << "\n";
+        cout << "Saving..." << "\n";
         break;
       case 3:
-        subMenu();
+        cout << "Loading..." << "\n";
+        //subMenu();
         break;
       case 4:
         cout << "Exiting Program" << "\n";
+        return;
+        break;
+      case 5:
+        cout << "About stuff can go here! But UVSIM is super cool and we're all super cool and that's about all I got to say about that." << "\n";
         return;
         break;
     }
     mainMenu();//to go back to this menu after option execution
 }
 
-void subMenu(){
+void subMenu() {
     string options[4] = { "Run Regular Program", "second option", "Other Options", "To Main Menu" };
-    int choice = promptMenu("string", options, sizeof(options)/sizeof(options[0]));
-    switch(choice){
-      case 1:
+    int choice = promptMenu("This is the subMenu", options, sizeof(options) / sizeof(options[0]));
+    switch (choice) {
+    case 1:
         runProgram();
         break;
-      case 2:
-        cout << "doing the second thing" << "\n";
+    case 2:
+        cout << "Saving..." << "\n";
         break;
-      case 3:
+    case 3:
         subMenu();
         break;
-      case 4://to Main Menu
+    case 4://to Main Menu
         return;//assumes main menu is the only method calling this menu
         break;
     }
     subMenu();//to go back to this menu after option execution
 }
-
 void runProgram(){
 
     //set up memory
@@ -81,10 +87,13 @@ void runProgram(){
         m.set_value(i,0);
     }
 
-    getUserProgramInput(m);
+    // getUserProgramInput(m);
+    loadFromFile(m);
 
     runProgramInMemory(m);
-    
+
+
+
 }
 
 void runProgramInMemory(Memory& m){
@@ -94,6 +103,30 @@ void runProgramInMemory(Memory& m){
     m.dumpMemory("");
     outToFile(m);
 }
+
+// Loading saved data from a file to the Memory
+void loadFromFile(Memory& m){
+
+  ifstream file;
+    file.open("instructionsData.txt");
+
+    if (file.is_open()) {
+        int i = 0;
+        int element;
+
+        while (file >> element) {
+          if (element == -99999) { // Exit condition
+              m.last_address = i;
+              break;
+          }
+            m.set_value(i++,element); // Reading instructions to the memory one by one
+
+    }
+  }
+  cout<<"\n*** Program loading complete ***"<<endl;
+  // error handling left to do
+}
+
 
 void getUserProgramInput(Memory& m){
     cout << "*** Welcome to UVSim! ***" << endl;
@@ -128,7 +161,7 @@ void getUserProgramInput(Memory& m){
         }
         m.set_value(i, input);
     }
-    
+
     cout<<"\n*** Program loading complete ***"<<endl;
 }
 
