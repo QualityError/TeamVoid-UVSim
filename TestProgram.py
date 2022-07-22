@@ -10,7 +10,7 @@ def main():
 def runUVSim(inputs):
     command = "./UVSim.app"
     #run
-    p = subprocess.Popen(command, stdin=subprocess.PIPE, stdout=subprocess.PIPE, shell=True, universal_newlines=True)  
+    p = subprocess.Popen(command, stdin=subprocess.PIPE, stdout=subprocess.PIPE, shell=True, universal_newlines=True)
     output, err = p.communicate(input=inputs)
     #return
     return output[output.rfind(" "):-1]  # -1 to strip the final newline
@@ -33,5 +33,11 @@ def arithmeticTest(): # possibly create paramterized function so I am not duplic
     #mulInput =  "10000\n10001\n20000\n33001"
     #output = runUVSim(addInput)
     #print(output)
+
+def testLoadVal():
+    inputs = "22789\n21987\n11987\n-99999"
+    output = runUVSim(inputs)
+    print(output)
+    return True
 
 main()
