@@ -5,6 +5,8 @@ main.cpp
 #include "memory.h"
 #include "vm.h"
 #include <iostream>
+#include <fstream>
+#include <cstdio>
 #include <limits>
 #include <string>
 #include <fstream>
@@ -14,12 +16,17 @@ using namespace std;
 const string TEMP_FILE = "instructions.txt";
 
 vector<int> getUserProgramInput(Memory& m);
+string outFile = "out.txt";
+
 void runProgramInMemory(Memory& m);
 int promptMenu(string question, string options[], int numOptions);
 void mainMenu();
 void subMenu();
+
 void runProgram(bool write_flag);
 void write_to_file(vector<int> v, string filename);
+void outToFile(Memory& m);
+
 void loadFromFile(Memory& m);
 
 int main() {
@@ -36,43 +43,54 @@ void write_to_file(vector<int> v, string file_name = TEMP_FILE) {
     ofs.close();
 }
 
+void outToFile(Memory& m) {
+  m.dumpMemory(outFile);
+}
+
 void mainMenu(){
-    string options[4] = { "Run Regular Program", "Write to file", "Other Options", "Quit" };
-    int choice = promptMenu("string", options, sizeof(options)/sizeof(options[0]));
+    string options[5] = { "Run Regular Program", "Save", "Load", "Quit", "About"};
+    int choice = promptMenu("Hello there", options, sizeof(options)/sizeof(options[0]));
     bool write_flag = false;
     switch(choice){
       case 1:
         runProgram(write_flag);
         break;
-      case 2: // write to file
+      case 2:// write to file
         write_flag = true;
         runProgram(write_flag);
+        cout << "Saving..." << "\n";
         break;
       case 3:
-        subMenu();
+        cout << "Loading..." << "\n";
+        //subMenu();
         break;
       case 4:
         cout << "Exiting Program" << "\n";
+        return;
+        break;
+      case 5:
+        cout << "About stuff can go here! But UVSIM is super cool and we're all super cool and that's about all I got to say about that." << "\n";
         return;
         break;
     }
     mainMenu();//to go back to this menu after option execution
 }
 
-void subMenu(){
+void subMenu() {
     string options[4] = { "Run Regular Program", "second option", "Other Options", "To Main Menu" };
-    int choice = promptMenu("string", options, sizeof(options)/sizeof(options[0]));
-    switch(choice){
-      case 1:
+
+    int choice = promptMenu("This is the subMenu", options, sizeof(options) / sizeof(options[0]));
+    switch (choice) {
+    case 1:
         // runProgram(write_flag); // commented out so program compiles :) see mainMenu
         break;
-      case 2: 
-        cout << "doing the second thing" << "\n";
+    case 2:
+        cout << "Saving..." << "\n";
         break;
-      case 3:
+    case 3:
         subMenu();
         break;
-      case 4://to Main Menu
+    case 4://to Main Menu
         return;//assumes main menu is the only method calling this menu
         break;
     }
@@ -102,7 +120,8 @@ void runProgramInMemory(Memory& m){
     //run program in memory
     cout<<"*** Program execution begins ***"<<endl;
     VM(m);
-    m.dumpMemory();
+    m.dumpMemory("");
+    outToFile(m);
 }
 
 // Loading saved data from a file to the Memory
