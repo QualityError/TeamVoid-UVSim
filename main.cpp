@@ -15,9 +15,19 @@ int promptMenu(string question, string options[], int numOptions);
 void mainMenu();
 void subMenu();
 void runProgram();
+void printLogo();
+
+void printLogo() {
+    cout <<"\033[32;1;4m██╗   ██╗██╗   ██╗███████╗██╗███╗   ███╗\033[0m"<<endl;
+    cout <<"\033[32;1;4m██║   ██║██║   ██║██╔════╝██║████╗ ████║\033[0m"<<endl;
+    cout <<"\033[32;1;4m██║   ██║██║   ██║███████╗██║██╔████╔██║\033[0m"<<endl;
+    cout <<"\033[32;1;4m██║   ██║╚██╗ ██╔╝╚════██║██║██║╚██╔╝██║\033[0m"<<endl;
+    cout <<"\033[32;1;4m╚██████╔╝ ╚████╔╝ ███████║██║██║ ╚═╝ ██║\033[0m"<<endl;
+    cout <<"\033[32;1;4m ╚═════╝   ╚═══╝  ╚══════╝╚═╝╚═╝     ╚═╝\033[0m"<<endl;
+}
 
 int main() {
-    
+    printLogo();
     mainMenu();
 
     return 0;
