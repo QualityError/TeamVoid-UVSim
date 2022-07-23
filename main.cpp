@@ -12,11 +12,10 @@ main.cpp
 #include <vector>
 using namespace std;
 
-
-string outFile = "memory.txt";
-const string TEMP_FILE = "instructions.txt";
-
 vector<int> getUserProgramInput(Memory& m);
+const string MEMORY_DUMP_TO_FILE = "memory.txt";
+const string INSTRUCTION_WRITE_FILE = "instructions.txt";
+
 void runProgramInMemory(Memory& m);
 int promptMenu(string question, string options[], int numOptions);
 void mainMenu();
@@ -31,7 +30,7 @@ int main() {
     return 0;
 }
 
-void write_instructions_to_file(vector<int> v, string file_name = TEMP_FILE) {//for user instructions
+void write_instructions_to_file(vector<int> v, string file_name = INSTRUCTION_WRITE_FILE) {//for user instructions
     ofstream ofs;
     ofs.open(file_name, fstream::trunc);
     for (const int& i : v) // iterate through vector putting each item in file
@@ -40,7 +39,7 @@ void write_instructions_to_file(vector<int> v, string file_name = TEMP_FILE) {//
 }
 
 void memoryOutToFile(Memory& m) {//for memory
-  m.dumpMemory(outFile);
+  m.dumpMemory(MEMORY_DUMP_TO_FILE);
 }
 
 void mainMenu(){
