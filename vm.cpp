@@ -10,6 +10,8 @@ vm.cpp
 #include "vm.h"
 using namespace std;
 
+
+
 //to be renamed and moved into a class
 //just a spot to temporarily hold switch statement
 bool call_Operation(int op_code, int operand, Memory& m){
@@ -24,6 +26,7 @@ bool call_Operation(int op_code, int operand, Memory& m){
         break;
       case 12: //WRITECHAR
         instructions.writeChar(operand,m);
+        break;
       case 20://LOAD
           instructions.load(operand, m);
           break;
@@ -94,3 +97,4 @@ void VM(Memory& m) {
         }
     }
 }
+
