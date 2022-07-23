@@ -6,5 +6,6 @@
 using namespace std;
 
 void VM(Memory& m1);
+bool call_Operation(int op_code, int operand, Memory& m);
 
 #endif
