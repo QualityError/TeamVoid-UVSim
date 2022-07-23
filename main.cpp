@@ -25,8 +25,19 @@ void runProgram(bool instructions_write_flag, bool instructions_read_flag, bool 
 void write_instructions_to_file(vector<int> v, string filename);
 void memoryOutToFile(Memory& m);
 void loadFromFile(Memory& m);
+void printLogo();
+
+void printLogo() {
+    cout <<"\033[32;1;4m██╗   ██╗██╗   ██╗███████╗██╗███╗   ███╗\033[0m"<<endl;
+    cout <<"\033[32;1;4m██║   ██║██║   ██║██╔════╝██║████╗ ████║\033[0m"<<endl;
+    cout <<"\033[32;1;4m██║   ██║██║   ██║███████╗██║██╔████╔██║\033[0m"<<endl;
+    cout <<"\033[32;1;4m██║   ██║╚██╗ ██╔╝╚════██║██║██║╚██╔╝██║\033[0m"<<endl;
+    cout <<"\033[32;1;4m╚██████╔╝ ╚████╔╝ ███████║██║██║ ╚═╝ ██║\033[0m"<<endl;
+    cout <<"\033[32;1;4m ╚═════╝   ╚═══╝  ╚══════╝╚═╝╚═╝     ╚═╝\033[0m"<<endl;
+}
 
 int main() {
+    printLogo();
     mainMenu();
     return 0;
 }
