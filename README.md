@@ -1,6 +1,52 @@
 # TeamVoid-UVSim
 UVSim Program (CS2450)
 
+#How to use the program
+
+    Launching the program-
+        Open the main.cpp file and run without debugging.
+    
+        
+    Navigating the Menu-
+        After launching the program, a menu will display five options to choose from.
+        Please type the number that corresponds with the action you wish to perform and press Enter.
+        The different options are self explanatory:
+            1) Run regular Program
+            2) Save
+            3) Load
+            4) Quit
+            5) About
+
+
+    Running the program-
+        Selecting option 1 allows you to make your own program. 
+        Notice that there is a brief introduction printed to to the terminal with simple instructions on how to use the program.-
+            " Please enter your program one instruction ( or data word ) at a time into the input 
+            text field. The line number and a question mark will display. Type the instruction 
+            for that line. Enter -99999 to complete entering your program and run"
+
+    Basic ML-
+        Here are some basic operations and their definitions to help you create your own program!
+        Name - Operator - Operand - Description
+            
+            READ       - 10 - Destintation Memory Address - Reads a keyboard into the specific location in memory.
+            WRITE      - 11 - Source Memory Address - Write a word from the specific location in memory to screen.
+            WRITECHAR  - 12 - Source Memory Address - Writes a character from the specific location in memory to screen, translating the value as ascii to character.
+            LOAD       - 20 - Source Memory Address - Load a word from a specific location memory into the accumulator.
+            STORE      - 21 - Destination Memory Address - Store a word from the accumulator into a specific location in memory.
+            LOADVAL    - 22 - Value                 - Loads a 3 digit number into the accumulator.
+            ADD        - 30 - Source Memory Address - Add a word from a specific location in memory to the word in the accumulator and leave the result in the accumulator.
+            SUBTRACT   - 31 - Source Memory Address - Subtract a word from a specific location in memory from the word in the accumulator and leave the result in the accumulator.
+            DIVIDE     - 32 - Source Memory Address - Divide the word in the accumulator by a word from a specific location in memory and leave the result in the accumulator.
+            MULTIPLY   - 33 - Source Memory Address - Multiply a word from a specific location in memory to the word in the accumulator and leave the result in the accumulator.
+            BRANCH     - 40 - Branch Memory Address - Branch to a specific location in memory.
+            BRANCHNEG  - 41 - Branch Memory Address - Branch to a specific location in memory if the accumulator is negative.
+            BRANCHZERO - 42 - Branch Memory Address - Branch to a specific location in memory if the accumulator is zero.
+            HALT       - 43 - None                  - Pause the program.
+
+    Once you're done with your program you can save it or quit. Have fun!
+
+#Everything that follows are individual file explanations for developers.
 # File: main.cpp
     main() {
         initialize the terminal window.
@@ -10,6 +56,15 @@ UVSim Program (CS2450)
         execution happens in vm.cpp.
         dump the results in console (Feature 6).
         terminate the program.
+        
+        initialize the menu.
+        display the directions on the menu to the user.
+        possible include a submenu
+        get and store the user commands
+
+
+
+
     }
 
 # File: vm.cpp 
